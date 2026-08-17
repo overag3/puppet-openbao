@@ -13,7 +13,7 @@ jobs:
   create_tag:
     uses: 'voxpupuli/gha-puppet/.github/workflows/create_tag.yml@v4'
     with:
-      allowed_owner: 'overag3'
+      allowed_owner: 'voxpupuli'
       git_name: 'pccibot'
       git_email: '12855858+pccibot@users.noreply.github.com'
     secrets:
