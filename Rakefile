@@ -18,7 +18,7 @@ begin
 rescue LoadError
   # only available if gem group releases is installed
 else
-  GCGConfig.user = 'overag3'
+  GCGConfig.user = 'voxpupuli'
   GCGConfig.project = 'puppet-openbao'
 end
 
