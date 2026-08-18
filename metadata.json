@@ -1,0 +1,61 @@
+{
+  "name": "puppet-openbao",
+  "version": "0.1.0",
+  "author": "Nicolas Rogier",
+  "license": "AGPL-3.0",
+  "summary": "Puppet module to manage OpenBao (https://openbao.org/)",
+  "source": "https://github.com/voxpupuli/puppet-openbao",
+  "project_page": "https://github.com/voxpupuli/puppet-openbao",
+  "issues_url": "https://github.com/voxpupuli/puppet-openbao/issues",
+  "dependencies": [],
+  "requirements": [
+    {
+      "name": "openvox",
+      "version_requirement": ">= 8.19.0 < 9.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "12",
+        "13"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "22.04",
+        "24.04"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "9",
+        "10"
+      ]
+    }
+  ],
+  "tags": [
+    "openbao",
+    "vault",
+    "secrets",
+    "security"
+  ],
+  "pdk-version": "3.4.0"
+}
