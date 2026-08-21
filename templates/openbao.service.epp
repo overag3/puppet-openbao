@@ -1,0 +1,66 @@
+<%- |
+  Enum['server', 'agent']                $mode,
+  Stdlib::Absolutepath                   $binary,
+  Stdlib::Absolutepath                   $config_file,
+  String[1]                              $user,
+  String[1]                              $group,
+  Optional[Stdlib::Absolutepath]         $environment_file,
+  Array[Stdlib::Absolutepath]            $read_write_paths,
+  String[1]                              $runtime_directory,
+  Boolean                                $mlock_enabled,
+  Integer[1]                             $num_procs,
+  Optional[String[1]]                    $service_options,
+| -%>
+# THIS FILE IS MANAGED BY PUPPET
+# Derived from the unit shipped by the official OpenBao packages.
+[Unit]
+Description="OpenBao - A tool for managing secrets"
+Documentation=https://openbao.org/docs/
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=<%= $config_file %>
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+<% if $mode == 'server' { -%>
+Type=notify
+<% } else { -%>
+Type=simple
+<% } -%>
+User=<%= $user %>
+Group=<%= $group %>
+RuntimeDirectory=<%= $runtime_directory %>
+RuntimeDirectoryMode=0750
+<% if $environment_file { -%>
+EnvironmentFile=-<%= $environment_file %>
+<% } -%>
+Environment=GOMAXPROCS=<%= $num_procs %>
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+<% unless $read_write_paths.empty { -%>
+ReadWritePaths=<%= $read_write_paths.join(' ') %>
+<% } -%>
+NoNewPrivileges=yes
+<% if $mlock_enabled { -%>
+SecureBits=keep-caps
+AmbientCapabilities=CAP_IPC_LOCK
+CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
+<% } else { -%>
+CapabilityBoundingSet=CAP_SYSLOG
+<% } -%>
+ExecStart=<%= $binary %> <%= $mode %> -config=<%= $config_file %><% if $service_options { %> <%= $service_options %><% } %>
+ExecReload=/bin/kill --signal HUP $MAINPID
+KillMode=process
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+LimitNOFILE=65536
+LimitCORE=0
+MemorySwapMax=0
+
+[Install]
+WantedBy=multi-user.target

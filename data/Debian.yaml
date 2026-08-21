@@ -1,0 +1,2 @@
+---
+openbao::repo::keyring_path: '/etc/apt/keyrings/openbao.asc'

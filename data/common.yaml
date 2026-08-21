@@ -1,2 +1,4 @@
 ---
-
+# Platform dependent defaults live in the per-family files next to this one. Everything
+# else is defined in the signatures of the classes so that it shows up in REFERENCE.md.
+openbao::repo::keyring_path: '/etc/openbao-keyring.asc'

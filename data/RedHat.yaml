@@ -1,0 +1,2 @@
+---
+openbao::repo::keyring_path: '/etc/pki/rpm-gpg/RPM-GPG-KEY-openbao'

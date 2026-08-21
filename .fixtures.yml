@@ -1,3 +1,9 @@
 ---
 fixtures:
-  repositories: {}
+  repositories:
+    apt: https://github.com/puppetlabs/puppetlabs-apt.git
+    archive: https://github.com/voxpupuli/puppet-archive.git
+    file_capability: https://github.com/smoeding/puppet-file_capability.git
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib.git
+    systemd: https://github.com/voxpupuli/puppet-systemd.git
+    yumrepo_core: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
